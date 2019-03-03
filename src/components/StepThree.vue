@@ -1,7 +1,7 @@
 <template>
-  <fieldset id="step_3">
-    <legend>Step 3</legend>
-    <label for="rock">
+  <fieldset id="step_3" class="step" :disabled="disabled">
+    <legend class="step_legend">Step 3</legend>
+    <label class="step_label" for="rock">
       Are you ready to rock?
     </label>
     <input type="checkbox" id="rock" :value="true" v-model="rock">
@@ -11,6 +11,7 @@
 
 <script>
 export default {
+  props: ["disabled"],
   data() {
     return{
       rock: false
@@ -18,3 +19,13 @@ export default {
   }
 }
 </script>
+
+<style>
+#step_3  {
+  background-color: rgb(255, 205, 159);
+}
+
+#submit_button {
+  margin-top: 1rem;
+}
+</style>
