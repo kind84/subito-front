@@ -1,11 +1,11 @@
 <template>
-  <div id="app" :key=clear>
+  <div id="app" :key="clear">
     <div id="page-wrap">
       <h1 class="main-title">Seminar <span class="main-title__span">Registration</span></h1>
       <form class="main-form" @submit.prevent="complete3">
         <StepOne @complete1="complete1 = $event" />
-        <StepTwo :disabled="!complete1" @complete2="complete2 = $event"/>
-        <StepThree :disabled="!complete2" />
+        <StepTwo :disabled="!complete1" @complete2="complete2 = $event" :key="complete1+'x'" />
+        <StepThree :disabled="!complete2" :key="complete2+'a'" />
       </form>
     </div>
   </div>
@@ -89,10 +89,7 @@ body {
   border: none;
   padding: 1rem;
   align-self: start;
-}
-
-fieldset:disabled {
-  opacity: 10%;
+  overflow: hidden;
 }
 
 .step_legend {
@@ -129,5 +126,35 @@ fieldset:disabled {
   display: block;
   margin: auto;
   max-height: 9rem;
+}
+
+.slide-enter-active {
+  animation: slide-in 300ms ease-out forwards;
+}
+
+.slide-leave-active {
+  animation: slide-out 100ms ease-out forwards;
+}
+
+.slide-move {
+  transition: transform 1s;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(-20px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-out {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-20px);
+  }
 }
 </style>

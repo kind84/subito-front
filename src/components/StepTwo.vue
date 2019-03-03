@@ -57,7 +57,9 @@
         <textarea rows="10" cols="10" id="special_accomodations_text" v-model="special"></textarea>
       </div>  
     </div>
-    <img class="step_completed" v-if="complete[1] && complete[2]" src="../assets/done.png" alt="Done" />
+    <transition name="slide" mode="out-in">
+      <img class="step_completed" v-if="complete[1] && complete[2]" src="../assets/done.png" alt="Done" />
+    </transition>
   </fieldset>
 </template>
 
@@ -107,6 +109,54 @@ export default {
 <style>
 #step_2 {
   background-color: lightblue;
+  position: relative;
+}
+
+#step_2:disabled::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 1.35rem;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+#step_2 legend {
+  position: relative;
+  overflow: hidden;
+}
+
+#step_2:disabled legend::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+@-moz-document url-prefix() {
+  #step_2:disabled::before {
+    content: "";
+    position: absolute;
+    top: -21.5px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  #step_2:disabled legend::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
 }
 
 .step2_label {
